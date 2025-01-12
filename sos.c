@@ -1,3 +1,5 @@
+//IMPLEMENTAÇÃO DO SINAL SOS EM CÓDIGO MORSE COM LED NO RASPBERRY PI PICO
+
 #include <stdbool.h>
 #include <stdint.h>
 #include "pico/stdlib.h"
@@ -6,7 +8,7 @@
 // Definição do pino ao qual o LED está conectado
 #define LED 12
 
-// Definição dos tempos (em milissegundos) conforme especificado
+// Definição dos tempos (ms) conforme especificado
 #define TEMPO_PONTO 200       // Duração do ponto (0,2 segundos)
 #define TEMPO_TRACO 800       // Duração do traço (0,8 segundos)
 
@@ -22,19 +24,19 @@ int main() {
         for (int i = 0; i < 3; i++) {
             emitir_sinal_morse(TEMPO_PONTO);
         }
-        sleep_ms(250); // Intervalo entre letras (0,25 segundos)
+        sleep_ms(250); // delay entre letras (0,25 segundos)
 
         // Envia a letra O (três traços)
         for (int i = 0; i < 3; i++) {
             emitir_sinal_morse(TEMPO_TRACO);
         }
-        sleep_ms(250); // Intervalo entre letras (0,25 segundos)
+        sleep_ms(250); // delay entre letras (0,25 segundos)
 
         // Envia a letra S (três pontos)
         for (int i = 0; i < 3; i++) {
             emitir_sinal_morse(TEMPO_PONTO);
         }
-        sleep_ms(3000); // Intervalo entre ciclos de transmissão (3 segundos)
+        sleep_ms(3000); // delay entre ciclos de transmissão (3 segundos)
     }
 
     return 0;
@@ -55,5 +57,5 @@ void emitir_sinal_morse(uint32_t duracao) {
     acender_led();           // Liga o LED
     sleep_ms(duracao);       // Mantém o LED aceso pelo tempo definido
     apagar_led();            // Desliga o LED
-    sleep_ms(125);           // Intervalo entre sinais (0,125 segundos)
+    sleep_ms(125);           // delay entre sinais (0,125 segundos)
 }
